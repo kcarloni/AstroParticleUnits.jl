@@ -41,6 +41,7 @@ const EeV = u"EeV"
 const kpc = u"kpc"
 
 const mb = u"mb"
+# const μb = u"μb"
 
 const μG = u"μGauss"
 
@@ -55,9 +56,9 @@ units_to_export = (
     :m, :s, :eV,
     :rad, :°, :sr,
     :c0, #:q, 
-    :pc, #:AU, :ly, 
+    :pc, :kpc, #:AU, :ly, 
     :MeV, :GeV, :TeV, :PeV, :EeV,
-    :kpc, :cm, 
+    :cm, 
     :mb,
     :Gauss, :μG,
     :Msun,
