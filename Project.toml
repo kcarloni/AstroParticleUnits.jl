@@ -2,3 +2,17 @@ name = "AstroParticleUnits"
 uuid = "7ef70e66-125c-4f32-8552-6b4d78ac8c93"
 authors = ["kcarloni <kcarloni@g.harvard.edu>"]
 version = "0.1.0"
+
+[deps]
+Corpuscles = "e78a0372-c628-4773-9c8d-eb17d149bf93"
+NaturallyUnitful = "872cf16e-200e-11e9-2cdf-8bb39cfbec41"
+PhysicalConstants = "5ad8b20f-a522-5ce9-bfc9-ddf1d5bda6ab"
+Unitful = "1986cc42-f94f-5a68-af5c-568840ba703d"
+UnitfulAstro = "6112ee07-acf9-5e0f-b108-d242c714bf9f"
+
+[compat]
+Corpuscles = "2.1.1"
+NaturallyUnitful = "0.3.2"
+PhysicalConstants = "0.2.3"
+Unitful = "1.21.0"
+UnitfulAstro = "1.2.1"
