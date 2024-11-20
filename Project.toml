@@ -1,0 +1,4 @@
+name = "AstroParticleUnits"
+uuid = "7ef70e66-125c-4f32-8552-6b4d78ac8c93"
+authors = ["kcarloni <kcarloni@g.harvard.edu>"]
+version = "0.1.0"
