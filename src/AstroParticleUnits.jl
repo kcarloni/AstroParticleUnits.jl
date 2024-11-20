@@ -2,12 +2,13 @@ module AstroParticleUnits
 
 using NaturallyUnitful: natural, unnatural, uconvert
 using UnitfulAstro
-using Unitful: @u_str, @unit, unit, Quantity, ustrip, NoDims
-using Unitful: uparse, prefix, abbr, power
+using Unitful: @unit, prefix, abbr, power
+using Unitful: @u_str, unit, Quantity, ustrip, NoDims, uparse,
 
 using Corpuscles 
 
-export @u_str, ustrip, natural, uconvert, unit
+export @u_str, unit, Quantity, ustrip, NoDims, uparse
+export natural, unnatural, uconvert
 
 # import units: 
 
