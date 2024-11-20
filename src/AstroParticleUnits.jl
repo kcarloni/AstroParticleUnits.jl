@@ -76,15 +76,15 @@ end
 Base.:/( num::Quantity{T1, D, U}, denom::Quantity{T2, D, U}) where {T1, T2, U, D} = num.val / denom.val
 Base.:/( num::Quantity{T1, D, U1}, denom::Quantity{T2, D, U2}) where {T1, T2, U1, U2, D} = uconvert(unit(denom), num) / denom
 
-Base.:*( 
-    num::Quantity{T1, D, U}, 
-    denom::Quantity{T2, D, U}) where {T1, T2, U, D} = 
-        num.val * denom.val * unit(num) * unit(denom)
+# Base.:*( 
+#     num::Quantity{T1, D, U}, 
+#     denom::Quantity{T2, D, U}) where {T1, T2, U, D} = 
+#         num.val * denom.val * unit(num) * unit(denom)
     
-Base.:*( 
-    num::Quantity{T1, D, U1}, 
-    denom::Quantity{T2, D, U2}) where {T1, T2, U1, U2, D} = 
-        uconvert(unit(denom), num) * denom
+# Base.:*( 
+#     num::Quantity{T1, D, U1}, 
+#     denom::Quantity{T2, D, U2}) where {T1, T2, U1, U2, D} = 
+#         uconvert(unit(denom), num) * denom
 
 
 """

@@ -26,7 +26,7 @@ units_to_export = (
 )
 ```
 
-Additionally, I modified `Base.:/` and `Base.:*` to cancel units automatically when dividing two quantities, e.g.:
+Additionally, I modified `Base.:/` to cancel units automatically when dividing two quantities, e.g.:
 
 ```julia
 
