@@ -3,7 +3,7 @@ module AstroParticleUnits
 using NaturallyUnitful: natural, unnatural, uconvert
 using UnitfulAstro
 using Unitful: @unit, prefix, abbr, power
-using Unitful: @u_str, unit, Quantity, ustrip, NoDims, uparse,
+using Unitful: @u_str, unit, Quantity, ustrip, NoDims, uparse
 
 using Corpuscles 
 
