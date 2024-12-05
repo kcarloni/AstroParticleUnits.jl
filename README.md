@@ -36,6 +36,14 @@ julia> c / (1m/s)
 
 ```
 
+More examples:
+
+```julia
+
+julia> a0 = unnatural( m, ħ / (m_electron * c * α) )
+5.2917721090052e-11 m
+
+```
 
 
 
