@@ -16,9 +16,10 @@ units_to_export = (
     :m, :s, :eV,
     :rad, :°, :sr,
     :c0, #:q, 
-    :pc, #:AU, :ly, 
+    :pc, :kpc, :Mpc, :Gpc,
+    #:AU, :ly, 
     :MeV, :GeV, :TeV, :PeV, :EeV,
-    :kpc, :cm, 
+    :cm, :km,
     :mb,
     :Gauss, :μG,
     :Msun,
@@ -34,6 +35,8 @@ julia> c / (1m/s)
 2.99792458e8
 
 ```
+
+
 
 
 

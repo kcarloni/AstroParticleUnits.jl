@@ -1,14 +1,18 @@
 module AstroParticleUnits
 
-using NaturallyUnitful: natural, unnatural, uconvert
+using Unitful
 using UnitfulAstro
+
+using NaturallyUnitful: natural, unnatural, uconvert
 using Unitful: @unit, prefix, abbr, power
-using Unitful: @u_str, unit, Quantity, ustrip, NoDims, uparse
+using Unitful: @u_str, unit, Quantity, ustrip, NoDims, FreeUnits
+import Unitful: uparse
 
 using Corpuscles 
 
-export @u_str, unit, Quantity, ustrip, NoDims, uparse
+export @u_str, unit, Quantity, ustrip, NoDims, uparse, FreeUnits
 export natural, unnatural, uconvert
+export prefix, abbr, power
 
 # import units: 
 
@@ -32,6 +36,7 @@ import PhysicalConstants.CODATA2018: α
 # additionally useful constants:
 
 const cm = u"cm"
+const km = u"km"
 
 const MeV = u"MeV"
 const GeV = u"GeV"
@@ -40,6 +45,8 @@ const PeV = u"PeV"
 const EeV = u"EeV"
 
 const kpc = u"kpc"
+const Mpc = u"Mpc"
+const Gpc = u"Gpc"
 
 const mb = u"mb"
 # const μb = u"μb"
@@ -57,9 +64,10 @@ units_to_export = (
     :m, :s, :eV,
     :rad, :°, :sr,
     :c0, #:q, 
-    :pc, :kpc, #:AU, :ly, 
+    :pc, :kpc, :Mpc, :Gpc,
+    #:AU, :ly, 
     :MeV, :GeV, :TeV, :PeV, :EeV,
-    :cm, 
+    :cm, :km,
     :mb,
     :Gauss, :μG,
     :Msun,
@@ -87,8 +95,9 @@ Base.:/( num::Quantity{T1, D, U1}, denom::Quantity{T2, D, U2}) where {T1, T2, U1
 #         uconvert(unit(denom), num) * denom
 
 
+# use UnitfulParsableString.jl instead (?)
 """
-    parse_unit_to_recoverable_obj(u)
+    get_parseable_string_for_unit(u)
 
 unlike string(u), returns a string that can be parsed by `uparse`. 
 """
@@ -109,6 +118,16 @@ function get_parseable_string_for_unit(u)
 end
 export get_parseable_string_for_unit
 
+const AstroParticle_base_unit_context = [ Unitful, UnitfulAstro ]
 
+"""
+    uparse(string)
+
+Re-exported by AstroParticleUnits from Unitful with a default
+    `unit_context = AstroParticle_base_unit_context`.
+
+Outputs of `get_parseable_string_for_unit` are parseable. 
+"""
+uparse( str ) = uparse( str; unit_context=AstroParticle_base_unit_context )
 
 end # module AstroParticleUnits
