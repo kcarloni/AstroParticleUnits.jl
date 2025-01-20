@@ -6,9 +6,13 @@ using UnitfulAstro
 using NaturallyUnitful: natural, unnatural, uconvert
 using Unitful: @unit, prefix, abbr, power
 using Unitful: @u_str, unit, Quantity, ustrip, NoDims, FreeUnits
-import Unitful: uparse
+using Unitful: uparse
+# import Unitful: uparse
 
 using Corpuscles 
+
+using LaTeXStrings: @L_str
+import LaTeXStrings: latexstring 
 
 export @u_str, unit, Quantity, ustrip, NoDims, uparse, FreeUnits
 export natural, unnatural, uconvert
@@ -118,16 +122,41 @@ function get_parseable_string_for_unit(u)
 end
 export get_parseable_string_for_unit
 
+function latexstring( u::FreeUnits )
+
+    utup = [(
+        abbr = prefix(ui)*abbr(ui),
+        pow = power(ui)
+    ) for ui in typeof(u).parameters[1]]
+
+    return latexstring(
+        prod( L"\textrm{%$(ui.abbr)}^{%$( ui.pow.den == 1 ? Int(ui.pow) : Float64(ui.pow) )}" for ui in utup )
+    )
+end
+
+
+
 const AstroParticle_base_unit_context = [ Unitful, UnitfulAstro ]
 
-"""
-    uparse(string)
+# """
+#     uparse(string)
 
-Re-exported by AstroParticleUnits from Unitful with a default
-    `unit_context = AstroParticle_base_unit_context`.
+# Re-exported by AstroParticleUnits from Unitful with a default
+#     `unit_context = AstroParticle_base_unit_context`.
 
-Outputs of `get_parseable_string_for_unit` are parseable. 
-"""
-uparse( str ) = uparse( str; unit_context=AstroParticle_base_unit_context )
+# Outputs of `get_parseable_string_for_unit` are parseable. 
+# """
+# uparse( str ) = uparse( str; unit_context=AstroParticle_base_unit_context )
+# __precompile__(false)
+
+unitparse( str ) = uparse( str; unit_context=AstroParticle_base_unit_context )
+export unitparse
+
+macro uconvert(u, x)
+    return quote
+        uconvert.( $(esc(u)), $(esc(x)) )
+    end
+end
+export @uconvert
 
 end # module AstroParticleUnits
