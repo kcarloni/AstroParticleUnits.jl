@@ -189,7 +189,7 @@ export prefix, abbr, power
         if !compact
             show(io, v)
         end
-            print(io, "[" * prod( string.(x) .* ", " )[1:end-2] * "]" )
+            print(io, "[" * prod( string.(v) .* ", " )[1:end-2] * "]" )
     end
 
 #
