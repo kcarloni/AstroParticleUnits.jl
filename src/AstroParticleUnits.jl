@@ -189,7 +189,12 @@ export prefix, abbr, power
         if !compact
             show(io, v)
         end
-            print(io, "[" * prod( string.(v) .* ", " )[1:end-2] * "]" )
+            print(io, "[")
+            for (i, vi) in enumerate(v) 
+                print(io, vi)
+                (i < length(v)) && print(io, ", ")
+            end
+            print(io, "]")
     end
 
 #
