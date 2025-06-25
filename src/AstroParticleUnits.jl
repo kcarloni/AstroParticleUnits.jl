@@ -182,21 +182,8 @@ export prefix, abbr, power
             for ui in utup )
         )
     end
-
-    function Base.show(io::IO, v::AbstractVector{T}) where {T <: Quantity}
-        compact = get(io, :compact, false)
-
-        if !compact
-            show(io, v)
-        end
-            print(io, "[")
-            for (i, vi) in enumerate(v) 
-                print(io, vi)
-                (i < length(v)) && print(io, ", ")
-            end
-            print(io, "]")
-    end
-
+ 
+    Base.typeinfo_prefix( io::IO, v::AbstractVector{T} ) where {T <: Quantity} = "", false
 #
 
 macro uconvert(u, x)
