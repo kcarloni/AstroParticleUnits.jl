@@ -8,7 +8,10 @@ using Unitful: @unit, prefix, abbr, power
 using Unitful: @u_str, unit, Quantity, ustrip, NoDims, FreeUnits
 using Unitful: uparse
 
+# for particle properties 
 using Corpuscles 
+
+using UnitfulParsableString
 
 using LaTeXStrings: @L_str
 import LaTeXStrings: latexstring 
@@ -16,6 +19,14 @@ import LaTeXStrings: latexstring
 export @u_str, unit, Quantity, ustrip, NoDims, uparse, FreeUnits
 export natural, unnatural, uconvert
 export prefix, abbr, power
+
+# ===================
+# fix the default unit context 
+
+const AstroParticle_unit_context = [ Unitful, UnitfulAstro ]
+function __init__()
+    uparse( str ) = uparse( str; unit_context=AstroParticle_unit_context )
+end
 
 # ===================
 # setup units
@@ -119,50 +130,6 @@ export prefix, abbr, power
     #     num::Quantity{T1, D, U1}, 
     #     denom::Quantity{T2, D, U2}) where {T1, T2, U1, U2, D} = 
     #         uconvert(unit(denom), num) * denom
-
-#
-
-# ====================
-# unit parsing
-
-    # use UnitfulParsableString.jl instead (?)
-    """
-        get_parseable_string_for_unit(u)
-
-    unlike string(u), returns a string that can be parsed by `uparse`. 
-    """
-    function get_parseable_string_for_unit(u)
-
-        if typeof(u).parameters[1] == ()
-            return ""
-        end
-
-        utup = [(
-            abbr = prefix(ui)*abbr(ui),
-            pow = power(ui)
-        ) for ui in typeof(u).parameters[1]]
-
-        prod([
-            string(ui.abbr)*"^("*string(ui.pow)*") * " for ui in utup
-        ])[1:end-3]
-    end
-    export get_parseable_string_for_unit
-
-    const AstroParticle_base_unit_context = [ Unitful, UnitfulAstro ]
-
-    # """
-    #     uparse(string)
-
-    # Re-exported by AstroParticleUnits from Unitful with a default
-    #     `unit_context = AstroParticle_base_unit_context`.
-
-    # Outputs of `get_parseable_string_for_unit` are parseable. 
-    # """
-    # uparse( str ) = uparse( str; unit_context=AstroParticle_base_unit_context )
-    # __precompile__(false)
-
-    unitparse( str ) = uparse( str; unit_context=AstroParticle_base_unit_context )
-    export unitparse
 
 #
 
