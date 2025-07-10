@@ -6,7 +6,7 @@ using UnitfulAstro
 using NaturallyUnitful: natural, unnatural, uconvert
 using Unitful: @unit, prefix, abbr, power
 using Unitful: @u_str, unit, Quantity, ustrip, NoDims, FreeUnits
-using Unitful: uparse
+# using Unitful: uparse
 
 # for particle properties 
 using Corpuscles 
@@ -23,10 +23,10 @@ export prefix, abbr, power
 # ===================
 # fix the default unit context 
 
-const AstroParticle_unit_context = [ Unitful, UnitfulAstro ]
-function __init__()
-    uparse( str ) = uparse( str; unit_context=AstroParticle_unit_context )
-end
+# create new function `AstroParticleUnits.uparse` with correct context.
+const AstroParticleUnits_context = ( Unitful, UnitfulAstro )
+uparse( str ) = Unitful.uparse( str; unit_context=AstroParticleUnits_context )
+export uparse
 
 # ===================
 # setup units
