@@ -70,6 +70,10 @@ export uparse
     const EeV = u"EeV"
     append!( units_to_export, [:MeV, :GeV, :TeV, :PeV, :EeV] )
 
+    const ns = u"ns"
+    const μs = u"μs"
+    append!( units_to_export, [:ns, :μs] )
+
     const kpc = u"kpc"
     const Mpc = u"Mpc"
     const Gpc = u"Gpc"
