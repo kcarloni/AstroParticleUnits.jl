@@ -61,7 +61,8 @@ export uparse
     # additionally useful constants:
     const cm = u"cm"
     const km = u"km"
-    append!( units_to_export, [:cm, :km] )
+    const nm = u"nm"
+    append!( units_to_export, [:cm, :km, :nm] )
 
     const MeV = u"MeV"
     const GeV = u"GeV"
