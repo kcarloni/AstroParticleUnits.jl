@@ -75,6 +75,11 @@ export uparse
     const μs = u"μs"
     append!( units_to_export, [:ns, :μs] )
 
+    const Hz = u"Hz"
+    const kHz = u"kHz"
+    const mHz = u"mHz"
+    append!( units_to_export, [:Hz, :kHz, :mHz] )
+
     const kpc = u"kpc"
     const Mpc = u"Mpc"
     const Gpc = u"Gpc"
