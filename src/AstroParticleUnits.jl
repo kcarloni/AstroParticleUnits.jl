@@ -5,7 +5,7 @@ using UnitfulAstro
 
 using NaturallyUnitful: natural, unnatural, uconvert
 using Unitful: @unit, prefix, abbr, power
-using Unitful: @u_str, unit, Quantity, ustrip, NoDims, FreeUnits
+using Unitful: @u_str, unit, dimension, Quantity, ustrip, NoDims, FreeUnits
 # using Unitful: uparse
 
 # for particle properties 
@@ -16,7 +16,7 @@ using UnitfulParsableString
 using LaTeXStrings: @L_str
 import LaTeXStrings: latexstring 
 
-export @u_str, unit, Quantity, ustrip, NoDims, uparse, FreeUnits
+export @u_str, unit, dimension, Quantity, ustrip, NoDims, uparse, FreeUnits
 export natural, unnatural, uconvert
 export prefix, abbr, power
 
@@ -98,7 +98,7 @@ export uparse
     const m_pi0 = Particle("pi0").mass.value * c^2
     const m_muon = Particle("muon").mass.value * c^2 
     const m_tau = Particle("tau").mass.value * c^2
-    append!( units_to_export, [:m_pi0, :m_muon] )
+    append!( units_to_export, [:m_pi0, :m_muon, :m_tau] )
 
     # const m_Wboson = Particle("W+").mass.value * c^2
     # const m_Zboson = Particle("Z0").mass.value * c^2
